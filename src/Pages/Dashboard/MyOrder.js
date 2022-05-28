@@ -16,7 +16,7 @@ const MyOrder = ({ order, index }) => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`http://localhost:4000/deleteOrder/${orderId}`, {
+                        fetch(`http://localhost:5000/deleteOrder/${orderId}`, {
                             method: 'DELETE',
                             headers: {
                                 'content-type': 'application/json'
@@ -46,7 +46,7 @@ const MyOrder = ({ order, index }) => {
             <td>${order.totalCost}</td>
             <td>
                 {
-                    order.paid ? <p className='text-green-500'>Paid</p> : <button className='btn btn-xs bg-red-500' onClick={() => handleCancelOrder(order._id)}>Cancel</button>
+                    order.paid ? <p className='text-green-500'>Paid</p> : <button className='btn btn-xs border-none text-white bg-red-500' onClick={() => handleCancelOrder(order._id)}>Cancel</button>
                 }
             </td>
             <td>

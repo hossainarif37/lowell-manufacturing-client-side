@@ -74,9 +74,9 @@ const Login = () => {
                                 </label>
                             </div>
                         </div>
-                        <p className="text-red-500 text-xs">{signInErrorMessage}</p>
-                        <input type="submit" className='btn btn-accent w-full max-w-xs' value='login' />
-                        <p className='mt-3'><small>Don't have an account? <Link to='/register' className='text-secondary'>Please Register</Link></small></p>
+                        <p className="text-red-500 text-xs mb-2">{signInErrorMessage}</p>
+                        <input type="submit" className='btn btn-accent text-white w-full max-w-xs' value='login' />
+                        <p className='mt-3'><small>Don't have an account? <Link to='/register' className='text-cyan-400 font-bold'> Register Now</Link></small></p>
                     </form>
                     <div className="divider">OR</div>
                     <button

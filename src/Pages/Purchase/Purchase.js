@@ -15,7 +15,7 @@ const Purchase = () => {
 
     console.log(user);
     useEffect(() => {
-        const url = `http://localhost:4000/product/${productId}`
+        const url = `http://localhost:5000/product/${productId}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
@@ -49,7 +49,7 @@ const Purchase = () => {
         const userEmail = user?.email;
         const order = { productName, userName, email, img, number, orderQuantity, userEmail, totalCost };
 
-        fetch('http://localhost:4000/order', {
+        fetch('http://localhost:5000/order', {
             method: "POST",
             headers: {
                 "content-type": "application/json"

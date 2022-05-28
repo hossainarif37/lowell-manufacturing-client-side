@@ -12,47 +12,52 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import AddAReview from './Pages/Dashboard/AddAReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import {
-  useQuery,
-  useMutation,
-  useQueryClient,
+
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
 import Payment from './Pages/Dashboard/Payment';
 import Blog from './Pages/Blogs/Blogs';
+import NotFound from './Pages/NotFound/NotFound';
+import Footer from './Pages/Shared/Footer';
 
 function App() {
   const queryClient = new QueryClient();
 
   return (
-    <div className='max-w-7xl mx-auto px-10'>
+    <div >
+
       <QueryClientProvider client={queryClient}>
         <Navbar></Navbar>
-        <Routes>
-          <Route path='/' element={<Home></Home>}></Route>
-          <Route path='/home' element={<Home></Home>}></Route>
-          <Route path='/purchase/:productId' element={
-            <RequireAuth>
-              <Purchase></Purchase>
-            </RequireAuth>
-          }></Route>
-          <Route path='/dashboard' element={
-            <RequireAuth>
-              <Dashboard></Dashboard>
-            </RequireAuth>}>
-            <Route index element={<MyOrders></MyOrders>} />
-            <Route path='myOrders' element={<MyOrders></MyOrders>} />
-            <Route path='payment/:id' element={<Payment></Payment>} />
-            <Route path='addAReview' element={<AddAReview></AddAReview>} />
-            <Route path='myProfile' element={<MyProfile></MyProfile>} />
-          </Route>
-          <Route path='/blogs' element={<Blog></Blog>}></Route>
-          <Route path='/login' element={<Login></Login>}></Route>
-          <Route path='/register' element={<Register></Register>}></Route>
-        </Routes>
+        <div className='max-w-7xl mx-auto px-10'>
+          <Routes>
+            <Route path='/' element={<Home></Home>}></Route>
+            <Route path='/home' element={<Home></Home>}></Route>
+            <Route path='/purchase/:productId' element={
+              <RequireAuth>
+                <Purchase></Purchase>
+              </RequireAuth>
+            }></Route>
+            <Route path='/dashboard' element={
+              <RequireAuth>
+                <Dashboard></Dashboard>
+              </RequireAuth>}>
+              <Route index element={<MyOrders></MyOrders>} />
+              <Route path='myOrders' element={<MyOrders></MyOrders>} />
+              <Route path='payment/:id' element={<Payment></Payment>} />
+              <Route path='addAReview' element={<AddAReview></AddAReview>} />
+              <Route path='myProfile' element={<MyProfile></MyProfile>} />
+            </Route>
+            <Route path='/blogs' element={<Blog></Blog>}></Route>
+            <Route path='/login' element={<Login></Login>}></Route>
+            <Route path='/register' element={<Register></Register>}></Route>
+            <Route path='*' element={<NotFound></NotFound>}></Route>
+          </Routes>
+        </div>
+        <Footer></Footer>
         <ToastContainer></ToastContainer>
-      </QueryClientProvider>
-    </div>
+      </QueryClientProvider >
+    </div >
   );
 }
 

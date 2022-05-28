@@ -120,10 +120,10 @@ const Register = () => {
                                 {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                             </label>
                         </div>
-                        <p className="text-red-500 text-xs">{signInErrorMessage}</p>
-                        <input value="Sign Up" type="submit" className='btn btn-accent w-full max-w-xs' />
+                        <p className="text-red-500 text-xs mb-2">{signInErrorMessage}</p>
+                        <input value="Sign Up" type="submit" className='btn btn-accent text-white w-full max-w-xs' />
                     </form>
-                    <p><small>Already have an account? <Link className='text-secondary' to='/login'>Sign In Now</Link></small></p>
+                    <p><small>Already have an account? <Link className='text-cyan-400 font-bold' to='/login'>Sign In Now</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}
