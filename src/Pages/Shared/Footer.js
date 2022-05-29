@@ -6,10 +6,10 @@ const Footer = () => {
         <div>
             <footer className="footer footer-center p-10 bg-[#222] text-white rounded mt-12">
                 <div className="grid grid-flow-col gap-4">
-                    <Link to='#' className="link link-hover text-base">About us</Link>
-                    <Link to='#' className="link link-hover text-base">Contact</Link>
-                    <Link to='#' className="link link-hover text-base">Jobs</Link>
-                    <Link to='#' className="link link-hover text-base">Press kit</Link>
+                    <Link to='/aboutUs' className="link link-hover text-base">About us</Link>
+                    <Link to='/contact' className="link link-hover text-base">Contact</Link>
+                    <Link to='/blogs' className="link link-hover text-base">Blogs</Link>
+                    <Link to='/portfolio' className="link link-hover text-base">My Portfolio</Link>
                 </div>
                 <div>
                     <div className="grid grid-flow-col gap-4">
@@ -21,7 +21,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div>
-                    <p>Copyright © 2022 - All right reserved by Lowell Manufacturing Ltd</p>
+                    <p>Copyright © 2022 - All right reserved by Parts Producer Ltd</p>
                 </div>
             </footer>
         </div>

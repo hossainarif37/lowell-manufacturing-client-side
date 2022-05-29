@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import Loading from '../Shared/Loading';
-const axios = require('axios').default;
 
 const Purchase = () => {
     const [user, loading] = useAuthState(auth);
@@ -13,9 +12,9 @@ const Purchase = () => {
     const [disabled, setDisabled] = useState(false);
 
 
-    console.log(user);
+    // console.log(user);
     useEffect(() => {
-        const url = `http://localhost:5000/product/${productId}`
+        const url = `https://damp-sands-17118.herokuapp.com/product/${productId}`
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
@@ -49,7 +48,7 @@ const Purchase = () => {
         const userEmail = user?.email;
         const order = { productName, userName, email, img, number, orderQuantity, userEmail, totalCost };
 
-        fetch('http://localhost:5000/order', {
+        fetch('https://damp-sands-17118.herokuapp.com/order', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -60,13 +59,11 @@ const Purchase = () => {
             .then(res => res.json())
             .then(data => {
                 toast.success('Your order has been added. Check out now!');
-                console.log(data)
+                // console.log(data)
             });
 
 
     };
-
-
 
     return (
         <div className="flex flex-col w-full lg:flex-row">

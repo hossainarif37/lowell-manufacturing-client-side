@@ -12,13 +12,18 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import AddAReview from './Pages/Dashboard/AddAReview';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import {
-
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
 import Payment from './Pages/Dashboard/Payment';
-import Blog from './Pages/Blogs/Blogs';
-import NotFound from './Pages/NotFound/NotFound';
+import AllUsers from './Pages/Dashboard/AllUsers';
+import RequireAdmin from './Pages/Login/RequireAdmin';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
+import AddProduct from './Pages/Dashboard/AddProduct';
+import ManageProduct from './Pages/Dashboard/ManageProduct';
+import NotFound from './Pages/Shared/NotFound';
+import Blogs from './Pages/Blogs/Blogs';
+import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
 import Footer from './Pages/Shared/Footer';
 
 function App() {
@@ -26,13 +31,13 @@ function App() {
 
   return (
     <div >
-
       <QueryClientProvider client={queryClient}>
         <Navbar></Navbar>
-        <div className='max-w-7xl mx-auto px-10'>
+        <div className='max-w-7xl mx-auto'>
           <Routes>
             <Route path='/' element={<Home></Home>}></Route>
             <Route path='/home' element={<Home></Home>}></Route>
+            <Route path='/portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
             <Route path='/purchase/:productId' element={
               <RequireAuth>
                 <Purchase></Purchase>
@@ -42,13 +47,25 @@ function App() {
               <RequireAuth>
                 <Dashboard></Dashboard>
               </RequireAuth>}>
-              <Route index element={<MyOrders></MyOrders>} />
+              {/* <Route index element={<Dashboard></Dashboard>} /> */}
               <Route path='myOrders' element={<MyOrders></MyOrders>} />
               <Route path='payment/:id' element={<Payment></Payment>} />
               <Route path='addAReview' element={<AddAReview></AddAReview>} />
               <Route path='myProfile' element={<MyProfile></MyProfile>} />
+              <Route path='allUsers' element={<RequireAdmin>
+                <AllUsers></AllUsers>
+              </RequireAdmin>} />
+              <Route path='manageOrders' element={<RequireAdmin>
+                <ManageOrders></ManageOrders>
+              </RequireAdmin>} />
+              <Route path='addProduct' element={<RequireAdmin>
+                <AddProduct></AddProduct>
+              </RequireAdmin>} />
+              <Route path='manageProduct' element={<RequireAdmin>
+                <ManageProduct></ManageProduct>
+              </RequireAdmin>} />
             </Route>
-            <Route path='/blogs' element={<Blog></Blog>}></Route>
+            <Route path='/blogs' element={<Blogs></Blogs>}></Route>
             <Route path='/login' element={<Login></Login>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
             <Route path='*' element={<NotFound></NotFound>}></Route>
@@ -56,7 +73,7 @@ function App() {
         </div>
         <Footer></Footer>
         <ToastContainer></ToastContainer>
-      </QueryClientProvider >
+      </QueryClientProvider>
     </div >
   );
 }

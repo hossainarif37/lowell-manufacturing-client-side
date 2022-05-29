@@ -10,7 +10,7 @@ const MyProfile = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${email}`)
+        fetch(`https://damp-sands-17118.herokuapp.com/user/${email}`)
             .then(res => res.json())
             .then(data => setLoadUser(data));
     }, [loadUser]);
@@ -26,10 +26,10 @@ const MyProfile = () => {
 
 
         const updateUser = { phone, education, location, linkedIn, image, email, name };
-        console.log(phone, education, location, linkedIn, image);
+        // console.log(phone, education, location, linkedIn, image);
 
 
-        fetch(`http://localhost:5000/user/${email}`,
+        fetch(`https://damp-sands-17118.herokuapp.com/user/${email}`,
             {
                 method: 'PUT',
                 headers: {

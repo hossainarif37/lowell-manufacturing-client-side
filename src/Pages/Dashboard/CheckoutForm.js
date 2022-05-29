@@ -13,7 +13,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         if (totalCost) {
-            fetch('http://localhost:5000/create-payment-intent', {
+            fetch('https://damp-sands-17118.herokuapp.com/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -27,7 +27,8 @@ const CheckoutForm = ({ order }) => {
                         setClientSecret(data.clientSecret);
                     }
                 });
-        }
+        };
+
     }, [totalCost])
 
     const handleSubmit = async (event) => {
@@ -76,7 +77,7 @@ const CheckoutForm = ({ order }) => {
         else {
             setCardError('');
             setTransactionId(paymentIntent.id);
-            console.log(paymentIntent)
+            // console.log(paymentIntent)
             setSuccess('Congrats! Your payment is completed');
 
 
@@ -85,7 +86,7 @@ const CheckoutForm = ({ order }) => {
                 order: _id,
                 transactionId: paymentIntent.id,
             }
-            fetch(`http://localhost:5000/getPayment/${order._id}`, {
+            fetch(`https://damp-sands-17118.herokuapp.com/getPayment/${order._id}`, {
                 method: 'PUT',
                 headers: {
                     'content-type': 'application/json'
@@ -94,11 +95,10 @@ const CheckoutForm = ({ order }) => {
             }).then(res => res.json())
                 .then(data => {
                     setProcessing(false);
-                    console.log(data)
+                    // console.log(data)
                 });
         }
-
-    }
+    };
 
     return (
         <>

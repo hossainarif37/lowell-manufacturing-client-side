@@ -12,9 +12,9 @@ const Review = ({ review, refetch }) => {
                         </div>
                     </div>
                 </div>
-                <h2 className="card-title text-neutral font-bold">{review.name}</h2>
+                <h2 className="card-title text-cyan-500">{review.name}</h2>
                 <p>{review.text}</p>
-                <p>Ratings: <span className='text-primary'>{review.ratings}</span></p>
+                <p>Ratings: <span className='text-red-400'>{review.ratings}</span></p>
             </div>
         </div>
 

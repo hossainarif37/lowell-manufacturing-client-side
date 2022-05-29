@@ -1,21 +1,20 @@
 import React from 'react';
 import auth from '../../firebase.init';
-import { useAuthState, useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth"
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithGoogle, useUpdateProfile } from "react-firebase-hooks/auth"
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import Loading from '../Shared/Loading';
 
 const Register = () => {
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const [sendEmailVerification, sending, error] = useSendEmailVerification(
+    const [signInWithGoogle, gLoading, gError] = useSignInWithGoogle(auth);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [sendEmailVerification] = useSendEmailVerification(
         auth
     );
 
 
     const [
         createUserWithEmailAndPassword,
-        user,
         eLoading,
         emailError,
     ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
@@ -38,8 +37,22 @@ const Register = () => {
     const onSubmit = async (data) => {
         await createUserWithEmailAndPassword(data.email, data.password, { sendEmailVerification });
         await updateProfile({ displayName: data.name });
-        console.log('Update done');
-        navigate('/home');
+
+        const user = { name: data.name, email: data.email }
+        if (data.email) {
+            fetch(`https://damp-sands-17118.herokuapp.com/user/${data.email}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    navigate('/home');
+                });
+        }
     };
 
     return (
@@ -121,9 +134,9 @@ const Register = () => {
                             </label>
                         </div>
                         <p className="text-red-500 text-xs mb-2">{signInErrorMessage}</p>
-                        <input value="Sign Up" type="submit" className='btn btn-accent text-white w-full max-w-xs' />
+                        <input value="Sign Up" type="submit" className='btn btn-accent w-full max-w-xs' />
                     </form>
-                    <p><small>Already have an account? <Link className='text-cyan-400 font-bold' to='/login'>Sign In Now</Link></small></p>
+                    <p><small>Already have an account? <Link className='text-secondary' to='/login'>Sign In Now</Link></small></p>
                     <div className="divider">OR</div>
                     <button
                         onClick={() => signInWithGoogle()}

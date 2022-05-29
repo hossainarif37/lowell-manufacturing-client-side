@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Part = ({ part }) => {
-    console.log(part);
+    // console.log(part);
     const { name, price, description, img, minOrder, _id, qty } = part;
     const navigate = useNavigate();
 

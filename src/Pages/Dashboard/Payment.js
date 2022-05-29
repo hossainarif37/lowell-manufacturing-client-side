@@ -10,10 +10,10 @@ const Payment = () => {
     const [order, setOrder] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/payment/${id}`)
+        fetch(`https://damp-sands-17118.herokuapp.com/payment/${id}`)
             .then(res => res.json())
             .then(data => {
-                console.log(order)
+                // console.log(order)
                 setOrder(data);
             });
     }, [setOrder]);

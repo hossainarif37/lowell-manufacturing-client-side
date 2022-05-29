@@ -33,7 +33,7 @@ const Login = () => {
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password);
-        console.log(data)
+        // console.log(data)
     };
 
     if (eUser || user || gUser) {
@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     return (
-        <div className="grid items-center justify-items-center mt-10 bg-base-200 py-10">
+        <div className="grid items-center justify-items-center mt-10 bg-base-200 py-10 lg:px-10 md:px-5 sm:px-3">
             <div className="card w-96 bg-base-100 shadow-xl">
                 <div className="card-body">
                     <h2 className="card-title">Login!</h2>
@@ -75,8 +75,8 @@ const Login = () => {
                             </div>
                         </div>
                         <p className="text-red-500 text-xs mb-2">{signInErrorMessage}</p>
-                        <input type="submit" className='btn btn-accent text-white w-full max-w-xs' value='login' />
-                        <p className='mt-3'><small>Don't have an account? <Link to='/register' className='text-cyan-400 font-bold'> Register Now</Link></small></p>
+                        <input type="submit" className='btn btn-accent w-full max-w-xs' value='login' />
+                        <p className='mt-3'><small>Don't have an account? <Link to='/register' className='text-secondary'>Please Register</Link></small></p>
                     </form>
                     <div className="divider">OR</div>
                     <button

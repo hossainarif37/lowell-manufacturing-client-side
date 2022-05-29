@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const MyOrder = ({ order, index }) => {
-    const navigate = useNavigate();
 
     const handleCancelOrder = (orderId) => {
 
@@ -16,7 +14,7 @@ const MyOrder = ({ order, index }) => {
                 {
                     label: 'Yes',
                     onClick: () => {
-                        fetch(`http://localhost:5000/deleteOrder/${orderId}`, {
+                        fetch(`https://damp-sands-17118.herokuapp.com/deleteOrder/${orderId}`, {
                             method: 'DELETE',
                             headers: {
                                 'content-type': 'application/json'
@@ -46,7 +44,7 @@ const MyOrder = ({ order, index }) => {
             <td>${order.totalCost}</td>
             <td>
                 {
-                    order.paid ? <p className='text-green-500'>Paid</p> : <button className='btn btn-xs border-none text-white bg-red-500' onClick={() => handleCancelOrder(order._id)}>Cancel</button>
+                    order.paid ? <p className='text-green-500'>Paid</p> : <button className='btn btn-xs bg-red-500' onClick={() => handleCancelOrder(order._id)}>Cancel</button>
                 }
             </td>
             <td>

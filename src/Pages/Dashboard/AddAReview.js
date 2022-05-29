@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Loading from '../Shared/Loading';
 
 const AddAReview = () => {
     const [user, loading] = useAuthState(auth);
@@ -10,6 +11,9 @@ const AddAReview = () => {
 
     const [value, setValue] = useState(1);
 
+    if (loading) {
+        return <Loading></Loading>
+    }
     const handleChange = event => {
         const value = Math.max(min, Math.min(max, Number(event.target.value)));
         setValue(value);
@@ -22,7 +26,7 @@ const AddAReview = () => {
         const ratings = value;
 
         const review = { text, ratings, email: user?.email, name: user?.displayName };
-        fetch('http://localhost:5000/review', {
+        fetch('https://damp-sands-17118.herokuapp.com/review', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -32,10 +36,10 @@ const AddAReview = () => {
             .then(res => res.json())
             .then(data => {
                 toast.success('Your Review Submitted Successfully!')
-                console.log(data);
+                // console.log(data);
                 event.target.review.value = '';
             });
-        console.log('clicked', text, ratings);
+        // console.log('clicked', text, ratings);
     };
 
 
