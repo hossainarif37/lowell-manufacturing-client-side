@@ -19,7 +19,7 @@ const Part = ({ part }) => {
                 </h2>
                 <ul>
                     {
-                        description.map((data, index) =>
+                        description?.map((data, index) =>
                             <li key={index}>
                                 {index + 1}. {data}
                             </li>)

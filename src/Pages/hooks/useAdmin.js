@@ -18,7 +18,7 @@ const useAdmin = user => {
                     setAdminLoading(false);
                 })
         }
-    }, [user])
+    }, [user.email])
 
     return [admin, adminLoading]
 }

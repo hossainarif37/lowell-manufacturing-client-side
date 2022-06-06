@@ -4,10 +4,13 @@ const AddProduct = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const getDescription = event.target.description.value;
+        const newDescription = getDescription.split(',');
+        console.log(newDescription);
 
         const product = {
             name: event.target.name.value,
-            description: event.target.description.value,
+            description: newDescription,
             img: event.target.img.value,
             minOrder: parseInt(event.target.minOrder.value),
             qty: parseInt(event.target.qty.value),
@@ -48,7 +51,7 @@ const AddProduct = () => {
 
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Description <span className='text-red-400'>*</span></span>
+                                        <span className="label-text">Description <span className='text-base-300'>(every feature separated by comma)</span><span className='text-red-400'>*</span></span>
                                     </label>
                                     <input required type="text" placeholder="Description" name='description' className="input input-bordered" />
                                 </div>
